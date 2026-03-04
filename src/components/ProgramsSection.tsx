@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Sparkles, Heart, Shield } from "lucide-react";
+import programsGroup from "@/assets/programs-group.png";
 
 const ProgramsSection = () => (
   <section id="programs" className="section-padding bg-warm">
@@ -45,31 +46,30 @@ const ProgramsSection = () => (
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.2 }}
-          className="bg-card rounded-2xl p-8 shadow-lg border border-border"
+          className="space-y-6"
         >
-          <h3 className="font-display text-xl font-semibold text-foreground mb-4">What to Expect</h3>
-          <ul className="space-y-3 text-muted-foreground">
-            <li className="flex items-start gap-2">
-              <span className="text-primary mt-1">•</span>
-              Small, focused group sessions
-            </li>
-            <li className="flex items-start gap-2">
-              <span className="text-primary mt-1">•</span>
-              Flexible per-session registration
-            </li>
-            <li className="flex items-start gap-2">
-              <span className="text-primary mt-1">•</span>
-              Evidence-based skill-building activities
-            </li>
-            <li className="flex items-start gap-2">
-              <span className="text-primary mt-1">•</span>
-              Supportive and inclusive atmosphere
-            </li>
-            <li className="flex items-start gap-2">
-              <span className="text-primary mt-1">•</span>
-              Fun and engaging for all ages
-            </li>
-          </ul>
+          <img
+            src={programsGroup}
+            alt="Children and adults enjoying a creative group activity"
+            className="rounded-2xl shadow-lg w-full"
+          />
+          <div className="bg-card rounded-2xl p-8 shadow-lg border border-border">
+            <h3 className="font-display text-xl font-semibold text-foreground mb-4">What to Expect</h3>
+            <ul className="space-y-3 text-muted-foreground">
+              {[
+                "Small, focused group sessions",
+                "Flexible per-session registration",
+                "Evidence-based skill-building activities",
+                "Supportive and inclusive atmosphere",
+                "Fun and engaging for all ages",
+              ].map((item) => (
+                <li key={item} className="flex items-start gap-2">
+                  <span className="text-primary mt-1">•</span>
+                  {item}
+                </li>
+              ))}
+            </ul>
+          </div>
         </motion.div>
       </div>
     </div>

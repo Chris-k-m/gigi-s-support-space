@@ -10,7 +10,9 @@
     "lint": "eslint .",
     "preview": "vite preview",
     "test": "vitest run",
+    "homepage": "https://chris-k-m.github.io/gigi-s-support-space",
     "test:watch": "vitest"
+
   },
   "dependencies": {
     "@hookform/resolvers": "^3.10.0",

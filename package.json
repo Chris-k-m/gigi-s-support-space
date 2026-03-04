@@ -3,14 +3,16 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
+ "homepage": "https://chris-k-m.github.io/gigi-s-support-space",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
     "build:dev": "vite build --mode development",
     "lint": "eslint .",
     "preview": "vite preview",
+    "predeploy": "npm run build",
+  "deploy": "gh-pages -d build"
     "test": "vitest run",
-    "homepage": "https://chris-k-m.github.io/gigi-s-support-space",
     "test:watch": "vitest"
 
   },

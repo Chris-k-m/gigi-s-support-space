@@ -6,7 +6,10 @@ yarn-debug.log*
 yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
+<<<<<<< HEAD
 .vs/
+=======
+>>>>>>> 89802f1ac41208a8e2afe74b1a7ff426f4eb813d
 
 node_modules
 dist

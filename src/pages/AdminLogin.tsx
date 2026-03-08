@@ -19,13 +19,21 @@ const AdminLogin = () => {
     e.preventDefault();
     setLoading(true);
     const { error } = await signIn(email, password);
-    setLoading(false);
     if (error) {
+      setLoading(false);
       toast.error("Invalid credentials. Please try again.");
-    } else {
-      navigate("/admin");
     }
+    // Navigation handled by useEffect below once auth state updates
   };
+
+  // Wait for auth to confirm admin status before navigating
+  const { user, isAdmin, loading: authLoading } = useAuth();
+  
+  useEffect(() => {
+    if (!authLoading && user && isAdmin) {
+      navigate("/admin", { replace: true });
+    }
+  }, [authLoading, user, isAdmin, navigate]);
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-background px-4">

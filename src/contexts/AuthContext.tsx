@@ -25,20 +25,22 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const [isAdmin, setIsAdmin] = useState(false);
   const [loading, setLoading] = useState(true);
 
-  const checkAdmin = (userId: string) => {
-    return supabase
-      .rpc("has_role", {
+  const checkAdmin = async (userId: string) => {
+    try {
+      const { data, error } = await supabase.rpc("has_role", {
         _user_id: userId,
         _role: "admin",
-      })
-      .then(({ data, error }) => {
-        if (error) {
-          setIsAdmin(false);
-          return;
-        }
-        setIsAdmin(!!data);
-      })
-      .catch(() => setIsAdmin(false));
+      });
+
+      if (error) {
+        setIsAdmin(false);
+        return;
+      }
+
+      setIsAdmin(!!data);
+    } catch {
+      setIsAdmin(false);
+    }
   };
 
   const applySessionState = (nextSession: Session | null) => {

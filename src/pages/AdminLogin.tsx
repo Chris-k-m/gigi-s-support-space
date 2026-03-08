@@ -26,11 +26,12 @@ const AdminLogin = () => {
     e.preventDefault();
     setSubmitting(true);
     const { error } = await signIn(email, password);
+    setSubmitting(false);
+
     if (error) {
-      setSubmitting(false);
       toast.error("Invalid credentials. Please try again.");
     }
-    // On success, onAuthStateChange will update user/isAdmin → useEffect navigates
+    // On success, auth state updates and useEffect navigates
   };
 
   return (

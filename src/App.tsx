@@ -23,41 +23,43 @@ import OrderConfirmation from "./pages/OrderConfirmation";
 
 const queryClient = new QueryClient();
 
-const App = () => (
-  <QueryClientProvider client={queryClient}>
-    <TooltipProvider>
-      <AuthProvider>
-        <CartProvider>
-          <Toaster />
-          <Sonner />
-          <BrowserRouter>
-            <Routes>
-              <Route path="/" element={<Index />} />
-              <Route path="/products" element={<ProductsPage />} />
-              <Route path="/services-page" element={<ServicesPage />} />
-              <Route path="/cart" element={<CartPage />} />
-              <Route path="/checkout" element={<CheckoutPage />} />
-              <Route path="/order-confirmation/:id" element={<OrderConfirmation />} />
+const App = () => {
+  return (
+    <QueryClientProvider client={queryClient}>
+      <TooltipProvider>
+        <AuthProvider>
+          <CartProvider>
+            <Toaster />
+            <Sonner />
+            <BrowserRouter>
+              <Routes>
+                <Route path="/" element={<Index />} />
+                <Route path="/products" element={<ProductsPage />} />
+                <Route path="/services-page" element={<ServicesPage />} />
+                <Route path="/cart" element={<CartPage />} />
+                <Route path="/checkout" element={<CheckoutPage />} />
+                <Route path="/order-confirmation/:id" element={<OrderConfirmation />} />
 
-              <Route path="/admin/login" element={<AdminLogin />} />
-              <Route path="/admin" element={<AdminLayout />}>
-                <Route index element={<AdminDashboard />} />
-                <Route path="products" element={<AdminProducts />} />
-                <Route path="products/new" element={<ProductForm />} />
-                <Route path="products/:id" element={<ProductForm />} />
-                <Route path="services" element={<AdminServices />} />
-                <Route path="services/new" element={<ServiceForm />} />
-                <Route path="services/:id" element={<ServiceForm />} />
-                <Route path="orders" element={<AdminOrders />} />
-              </Route>
+                <Route path="/admin/login" element={<AdminLogin />} />
+                <Route path="/admin" element={<AdminLayout />}>
+                  <Route index element={<AdminDashboard />} />
+                  <Route path="products" element={<AdminProducts />} />
+                  <Route path="products/new" element={<ProductForm />} />
+                  <Route path="products/:id" element={<ProductForm />} />
+                  <Route path="services" element={<AdminServices />} />
+                  <Route path="services/new" element={<ServiceForm />} />
+                  <Route path="services/:id" element={<ServiceForm />} />
+                  <Route path="orders" element={<AdminOrders />} />
+                </Route>
 
-              <Route path="*" element={<NotFound />} />
-            </Routes>
-          </BrowserRouter>
-        </CartProvider>
-      </AuthProvider>
-    </TooltipProvider>
-  </QueryClientProvider>
-);
+                <Route path="*" element={<NotFound />} />
+              </Routes>
+            </BrowserRouter>
+          </CartProvider>
+        </AuthProvider>
+      </TooltipProvider>
+    </QueryClientProvider>
+  );
+};
 
 export default App;

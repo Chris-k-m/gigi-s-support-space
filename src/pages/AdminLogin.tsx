@@ -11,29 +11,27 @@ import { Lock } from "lucide-react";
 const AdminLogin = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [loading, setLoading] = useState(false);
-  const { signIn } = useAuth();
+  const [submitting, setSubmitting] = useState(false);
+  const { signIn, user, isAdmin, loading } = useAuth();
   const navigate = useNavigate();
+
+  // Redirect when authenticated as admin
+  useEffect(() => {
+    if (!loading && user && isAdmin) {
+      navigate("/admin", { replace: true });
+    }
+  }, [loading, user, isAdmin, navigate]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setLoading(true);
+    setSubmitting(true);
     const { error } = await signIn(email, password);
     if (error) {
-      setLoading(false);
+      setSubmitting(false);
       toast.error("Invalid credentials. Please try again.");
     }
-    // Navigation handled by useEffect below once auth state updates
+    // On success, onAuthStateChange will update user/isAdmin → useEffect navigates
   };
-
-  // Wait for auth to confirm admin status before navigating
-  const { user, isAdmin, loading: authLoading } = useAuth();
-  
-  useEffect(() => {
-    if (!authLoading && user && isAdmin) {
-      navigate("/admin", { replace: true });
-    }
-  }, [authLoading, user, isAdmin, navigate]);
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-background px-4">
@@ -55,8 +53,8 @@ const AdminLogin = () => {
               <Label htmlFor="password">Password</Label>
               <Input id="password" type="password" value={password} onChange={(e) => setPassword(e.target.value)} required placeholder="••••••••" />
             </div>
-            <Button type="submit" className="w-full" disabled={loading}>
-              {loading ? "Signing in..." : "Sign In"}
+            <Button type="submit" className="w-full" disabled={submitting}>
+              {submitting ? "Signing in..." : "Sign In"}
             </Button>
           </form>
         </CardContent>

@@ -23,7 +23,8 @@ import OrderConfirmation from "./pages/OrderConfirmation";
 
 const queryClient = new QueryClient();
 
-const App = () => (
+const App = () => {
+  return (
   <QueryClientProvider client={queryClient}>
     <TooltipProvider>
       <AuthProvider>

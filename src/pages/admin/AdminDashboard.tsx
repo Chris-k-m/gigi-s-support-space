@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Package, Briefcase, ShoppingCart, DollarSign } from "lucide-react";
+import { Package, Briefcase, ShoppingCart, DollarSign, Mic, ClipboardList } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 
 const AdminDashboard = () => {

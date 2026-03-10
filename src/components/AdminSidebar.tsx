@@ -24,6 +24,8 @@ const menuItems = [
   { title: "Services", url: "/admin/services", icon: Briefcase },
   { title: "Add Service", url: "/admin/services/new", icon: PlusSquare },
   { title: "Orders", url: "/admin/orders", icon: ShoppingCart },
+  { title: "Speaking Requests", url: "/admin/speaking-requests", icon: Mic },
+  { title: "Quiz Submissions", url: "/admin/quiz-submissions", icon: ClipboardList },
 ];
 
 export const AdminSidebar = () => {

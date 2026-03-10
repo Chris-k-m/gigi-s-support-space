@@ -56,6 +56,8 @@ const App = () => {
                   <Route path="services/new" element={<ServiceForm />} />
                   <Route path="services/:id" element={<ServiceForm />} />
                   <Route path="orders" element={<AdminOrders />} />
+                  <Route path="speaking-requests" element={<AdminSpeakingRequests />} />
+                  <Route path="quiz-submissions" element={<AdminQuizSubmissions />} />
                 </Route>
 
                 <Route path="*" element={<NotFound />} />

@@ -173,6 +173,99 @@ export type Database = {
         }
         Relationships: []
       }
+      quiz_submissions: {
+        Row: {
+          additional_info: string | null
+          challenges: string[] | null
+          child_age_group: string
+          created_at: string
+          id: string
+          looking_for: string[] | null
+          parent_email: string
+          parent_name: string
+          parent_phone: string | null
+          receiving_therapy: string | null
+          status: string
+          updated_at: string
+        }
+        Insert: {
+          additional_info?: string | null
+          challenges?: string[] | null
+          child_age_group: string
+          created_at?: string
+          id?: string
+          looking_for?: string[] | null
+          parent_email: string
+          parent_name: string
+          parent_phone?: string | null
+          receiving_therapy?: string | null
+          status?: string
+          updated_at?: string
+        }
+        Update: {
+          additional_info?: string | null
+          challenges?: string[] | null
+          child_age_group?: string
+          created_at?: string
+          id?: string
+          looking_for?: string[] | null
+          parent_email?: string
+          parent_name?: string
+          parent_phone?: string | null
+          receiving_therapy?: string | null
+          status?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      speaking_requests: {
+        Row: {
+          audience_size: string | null
+          created_at: string
+          email: string
+          event_date: string | null
+          event_type: string | null
+          id: string
+          message: string | null
+          name: string
+          organization: string | null
+          phone: string | null
+          status: string
+          topic_of_interest: string | null
+          updated_at: string
+        }
+        Insert: {
+          audience_size?: string | null
+          created_at?: string
+          email: string
+          event_date?: string | null
+          event_type?: string | null
+          id?: string
+          message?: string | null
+          name: string
+          organization?: string | null
+          phone?: string | null
+          status?: string
+          topic_of_interest?: string | null
+          updated_at?: string
+        }
+        Update: {
+          audience_size?: string | null
+          created_at?: string
+          email?: string
+          event_date?: string | null
+          event_type?: string | null
+          id?: string
+          message?: string | null
+          name?: string
+          organization?: string | null
+          phone?: string | null
+          status?: string
+          topic_of_interest?: string | null
+          updated_at?: string
+        }
+        Relationships: []
+      }
       user_roles: {
         Row: {
           id: string

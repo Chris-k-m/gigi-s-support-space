@@ -20,6 +20,10 @@ import ServicesPage from "./pages/ServicesPage";
 import CartPage from "./pages/CartPage";
 import CheckoutPage from "./pages/CheckoutPage";
 import OrderConfirmation from "./pages/OrderConfirmation";
+import SpeakingPage from "./pages/SpeakingPage";
+import QuizPage from "./pages/QuizPage";
+import AdminSpeakingRequests from "./pages/admin/AdminSpeakingRequests";
+import AdminQuizSubmissions from "./pages/admin/AdminQuizSubmissions";
 
 const queryClient = new QueryClient();
 
@@ -39,6 +43,8 @@ const App = () => {
                 <Route path="/cart" element={<CartPage />} />
                 <Route path="/checkout" element={<CheckoutPage />} />
                 <Route path="/order-confirmation/:id" element={<OrderConfirmation />} />
+                <Route path="/speaking" element={<SpeakingPage />} />
+                <Route path="/quiz" element={<QuizPage />} />
 
                 <Route path="/admin/login" element={<AdminLogin />} />
                 <Route path="/admin" element={<AdminLayout />}>
@@ -50,6 +56,8 @@ const App = () => {
                   <Route path="services/new" element={<ServiceForm />} />
                   <Route path="services/:id" element={<ServiceForm />} />
                   <Route path="orders" element={<AdminOrders />} />
+                  <Route path="speaking-requests" element={<AdminSpeakingRequests />} />
+                  <Route path="quiz-submissions" element={<AdminQuizSubmissions />} />
                 </Route>
 
                 <Route path="*" element={<NotFound />} />

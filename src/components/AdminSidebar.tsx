@@ -1,4 +1,4 @@
-import { LayoutDashboard, Package, PlusCircle, Briefcase, PlusSquare, ShoppingCart, LogOut } from "lucide-react";
+import { LayoutDashboard, Package, PlusCircle, Briefcase, PlusSquare, ShoppingCart, LogOut, Mic, ClipboardList } from "lucide-react";
 import { NavLink } from "@/components/NavLink";
 import { useLocation } from "react-router-dom";
 import { useAuth } from "@/contexts/AuthContext";
@@ -24,6 +24,8 @@ const menuItems = [
   { title: "Services", url: "/admin/services", icon: Briefcase },
   { title: "Add Service", url: "/admin/services/new", icon: PlusSquare },
   { title: "Orders", url: "/admin/orders", icon: ShoppingCart },
+  { title: "Speaking Requests", url: "/admin/speaking-requests", icon: Mic },
+  { title: "Quiz Submissions", url: "/admin/quiz-submissions", icon: ClipboardList },
 ];
 
 export const AdminSidebar = () => {

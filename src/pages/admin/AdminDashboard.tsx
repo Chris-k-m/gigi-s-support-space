@@ -33,6 +33,8 @@ const AdminDashboard = () => {
     { title: "Services", value: stats.services, icon: Briefcase, color: "text-accent-foreground" },
     { title: "Orders", value: stats.orders, icon: ShoppingCart, color: "text-secondary" },
     { title: "Revenue", value: `$${stats.revenue.toFixed(2)}`, icon: DollarSign, color: "text-primary" },
+    { title: "Speaking Requests", value: stats.speaking, icon: Mic, color: "text-accent-foreground" },
+    { title: "Quiz Submissions", value: stats.quiz, icon: ClipboardList, color: "text-secondary" },
   ];
 
   return (

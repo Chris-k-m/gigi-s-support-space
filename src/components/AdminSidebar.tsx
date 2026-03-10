@@ -1,4 +1,4 @@
-import { LayoutDashboard, Package, PlusCircle, Briefcase, PlusSquare, ShoppingCart, LogOut } from "lucide-react";
+import { LayoutDashboard, Package, PlusCircle, Briefcase, PlusSquare, ShoppingCart, LogOut, Mic, ClipboardList } from "lucide-react";
 import { NavLink } from "@/components/NavLink";
 import { useLocation } from "react-router-dom";
 import { useAuth } from "@/contexts/AuthContext";

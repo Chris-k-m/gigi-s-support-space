@@ -20,6 +20,10 @@ import ServicesPage from "./pages/ServicesPage";
 import CartPage from "./pages/CartPage";
 import CheckoutPage from "./pages/CheckoutPage";
 import OrderConfirmation from "./pages/OrderConfirmation";
+import SpeakingPage from "./pages/SpeakingPage";
+import QuizPage from "./pages/QuizPage";
+import AdminSpeakingRequests from "./pages/admin/AdminSpeakingRequests";
+import AdminQuizSubmissions from "./pages/admin/AdminQuizSubmissions";
 
 const queryClient = new QueryClient();
 

@@ -4,7 +4,7 @@ import { Package, Briefcase, ShoppingCart, DollarSign, Mic, ClipboardList } from
 import { supabase } from "@/integrations/supabase/client";
 
 const AdminDashboard = () => {
-  const [stats, setStats] = useState({ products: 0, services: 0, orders: 0, revenue: 0 });
+  const [stats, setStats] = useState({ products: 0, services: 0, orders: 0, revenue: 0, speaking: 0, quiz: 0 });
 
   useEffect(() => {
     const fetchStats = async () => {

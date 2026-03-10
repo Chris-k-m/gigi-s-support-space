@@ -8,10 +8,12 @@ const AdminDashboard = () => {
 
   useEffect(() => {
     const fetchStats = async () => {
-      const [products, services, orders] = await Promise.all([
+      const [products, services, orders, speaking, quiz] = await Promise.all([
         supabase.from("products").select("id", { count: "exact", head: true }),
         supabase.from("admin_services").select("id", { count: "exact", head: true }),
         supabase.from("orders").select("total_amount"),
+        supabase.from("speaking_requests").select("id", { count: "exact", head: true }),
+        supabase.from("quiz_submissions").select("id", { count: "exact", head: true }),
       ]);
       const revenue = (orders.data ?? []).reduce((s, o) => s + Number(o.total_amount), 0);
       setStats({
@@ -19,6 +21,8 @@ const AdminDashboard = () => {
         services: services.count ?? 0,
         orders: orders.data?.length ?? 0,
         revenue,
+        speaking: speaking.count ?? 0,
+        quiz: quiz.count ?? 0,
       });
     };
     fetchStats();

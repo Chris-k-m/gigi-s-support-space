@@ -14,8 +14,8 @@ const Navbar = () => {
     { label: "Programs", href: "/#programs" },
     { label: "Products", href: "/products" },
     { label: "Our Services", href: "/services-page" },
-    { label: "Speaking", href: "/speaking" },
-    { label: "Support Quiz", href: "/quiz" },
+    { label: "Speaking", href: "/#speaking" },
+    { label: "Support Quiz", href: "/#quiz" },
     { label: "FAQ", href: "/#faq" },
     { label: "Contact", href: "/#contact" },
   ];

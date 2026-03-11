@@ -71,7 +71,7 @@ const SpeakingSection = () => {
   };
 
   return (
-    <section id="speaking" className="section-padding bg-primary/5">
+    <section id="speaking" className="section-padding bg-gradient-to-br from-primary/10 via-background to-secondary/10">
       <div className="container mx-auto">
         {/* Header */}
         <div className="text-center mb-12">

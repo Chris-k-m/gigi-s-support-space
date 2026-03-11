@@ -71,7 +71,7 @@ const SpeakingSection = () => {
   };
 
   return (
-    <section id="speaking" className="section-padding bg-primary/5">
+    <section id="speaking" className="section-padding bg-gradient-to-br from-primary/10 via-background to-secondary/10">
       <div className="container mx-auto">
         {/* Header */}
         <div className="text-center mb-12">
@@ -187,10 +187,17 @@ const SpeakingSection = () => {
                     <Label htmlFor="sp-msg">Message</Label>
                     <Textarea id="sp-msg" name="message" rows={4} value={form.message} onChange={handleChange} placeholder="Tell us about your event..." />
                   </div>
-                  <Button type="submit" size="lg" className="w-full" disabled={loading}>
-                    <Send className="w-4 h-4 mr-2" />
-                    {loading ? "Submitting..." : "Request a Speaking Session"}
-                  </Button>
+                  <motion.div whileHover={{ scale: 1.04 }} whileTap={{ scale: 0.95 }}>
+                    <Button
+                      type="submit"
+                      size="lg"
+                      className="w-full bg-secondary text-secondary-foreground hover:bg-primary hover:text-primary-foreground transition-all duration-300"
+                      disabled={loading}
+                    >
+                      <Send className="w-4 h-4 mr-2" />
+                      {loading ? "Submitting..." : "Request a Speaking Session"}
+                    </Button>
+                  </motion.div>
                 </form>
               </CardContent>
             </Card>

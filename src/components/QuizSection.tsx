@@ -11,9 +11,9 @@ import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import {
   Select, SelectContent, SelectItem, SelectTrigger, SelectValue,
 } from "@/components/ui/select";
-import { supabase } from "@/integrations/supabase/client";
 import { toast } from "@/components/ui/sonner";
 
+const EMAIL = "Virginiarssw@gmail.com";
 const ageGroups = ["0–3", "4–7", "8–12", "Teen"];
 const challenges = [
   "Social interaction", "Emotional regulation", "Daily routines",
@@ -28,7 +28,6 @@ const TOTAL_STEPS = 4;
 const QuizSection = () => {
   const [step, setStep] = useState(0);
   const [submitted, setSubmitted] = useState(false);
-  const [loading, setLoading] = useState(false);
 
   const [ageGroup, setAgeGroup] = useState("");
   const [selectedChallenges, setSelectedChallenges] = useState<string[]>([]);
@@ -51,17 +50,13 @@ const QuizSection = () => {
     return true;
   };
 
-  const handleSubmit = async () => {
+  const handleSubmit = () => {
     if (!parentName || !parentEmail) { toast("Please fill in your name and email."); return; }
-    setLoading(true);
-    const { error } = await supabase.from("quiz_submissions").insert({
-      child_age_group: ageGroup, challenges: selectedChallenges,
-      receiving_therapy: therapy, looking_for: lookingFor,
-      parent_name: parentName, parent_email: parentEmail,
-      parent_phone: parentPhone || null, additional_info: additionalInfo || null,
-    });
-    setLoading(false);
-    if (error) { toast("Something went wrong. Please try again."); return; }
+    const subject = encodeURIComponent("Support Quiz Submission");
+    const body = encodeURIComponent(
+      `Name: ${parentName}\nEmail: ${parentEmail}\nPhone: ${parentPhone || "N/A"}\n\nChild's Age Group: ${ageGroup}\nChallenges: ${selectedChallenges.join(", ")}\nCurrently Receiving Therapy: ${therapy}\nLooking For: ${lookingFor.join(", ")}\n\nAdditional Info:\n${additionalInfo || "N/A"}`
+    );
+    window.open(`mailto:${EMAIL}?subject=${subject}&body=${body}`, "_self");
     setSubmitted(true);
   };
 
@@ -98,7 +93,6 @@ const QuizSection = () => {
           ) : (
             <Card>
               <CardContent className="p-6 md:p-8">
-                {/* Progress */}
                 <div className="mb-8">
                   <div className="flex justify-between text-sm text-muted-foreground font-body mb-2">
                     <span>Step {step + 1} of {TOTAL_STEPS}</span>
@@ -194,8 +188,8 @@ const QuizSection = () => {
                       Next <ChevronRight className="w-4 h-4 ml-1" />
                     </Button>
                   ) : (
-                    <Button onClick={handleSubmit} disabled={!canNext() || loading}>
-                      {loading ? "Submitting..." : "Submit & Get Guidance"}
+                    <Button onClick={handleSubmit} disabled={!canNext()}>
+                      Submit & Get Guidance
                     </Button>
                   )}
                 </div>

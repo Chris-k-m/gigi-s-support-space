@@ -21,7 +21,7 @@ const App = () => {
         <CartProvider>
           <Toaster />
           <Sonner />
-        <BrowserRouter basename="/gigi-s-support-space">
+        <BrowserRouter>
             <Routes>
               <Route path="/" element={<Index />} />
               <Route path="/products" element={<ProductsPage />} />

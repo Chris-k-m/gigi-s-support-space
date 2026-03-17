@@ -44,6 +44,23 @@ const SpeakingSection = () => {
     <section id="speaking" className="section-padding bg-gradient-to-br from-primary/10 via-background to-secondary/10">
       <div className="container mx-auto">
         <div className="text-center mb-12">
+                  <motion.div
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.7, delay: 0.4 }}
+                      className="mt-8 mb-8 flex flex-col sm:flex-row gap-4 justify-center items-center"
+                  >
+            <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.97 }}>
+                <Button variant="hero" size="xl" asChild>
+                    <a href="#contact">Book a Consultation</a>
+                </Button>
+            </motion.div>
+            <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.97 }}>
+                <Button variant="hero-outline" size="xl" asChild>
+                    <a href="#programs">Explore Programs</a>
+                </Button>
+            </motion.div>
+        </motion.div>
           <motion.h2 initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="font-display text-3xl md:text-4xl font-bold text-foreground mb-4">
             Book Gigi for Speaking Engagements
           </motion.h2>

@@ -15,8 +15,8 @@ const App = () => {
       <Toaster />
       <Sonner />
       <ContentProvider>
-        <BrowserRouter>
-          <Routes>
+      <BrowserRouter basename="/gigi-s-support-space">
+        <Routes>
             <Route path="/" element={<Index />} />
             <Route path="/speaking" element={<SpeakingPage />} />
             <Route path="/quiz" element={<QuizPage />} />

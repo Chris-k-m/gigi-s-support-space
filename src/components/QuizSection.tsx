@@ -12,6 +12,7 @@ import {
   Select, SelectContent, SelectItem, SelectTrigger, SelectValue,
 } from "@/components/ui/select";
 import { toast } from "@/components/ui/sonner";
+import { useContent } from "@/contexts/ContentContext";
 
 const EMAIL = "Virginiarssw@gmail.com";
 const ageGroups = ["0–3", "4–7", "8–12", "Teen"];
@@ -26,9 +27,11 @@ const lookingForOptions = [
 const TOTAL_STEPS = 4;
 
 const QuizSection = () => {
+  const { content } = useContent();
+  const c = content?.quiz;
+
   const [step, setStep] = useState(0);
   const [submitted, setSubmitted] = useState(false);
-
   const [ageGroup, setAgeGroup] = useState("");
   const [selectedChallenges, setSelectedChallenges] = useState<string[]>([]);
   const [therapy, setTherapy] = useState("");
@@ -66,18 +69,11 @@ const QuizSection = () => {
     <section id="quiz" className="section-padding bg-secondary/5">
       <div className="container mx-auto">
         <div className="text-center mb-12">
-          <motion.h2
-            initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
-            className="font-display text-3xl md:text-4xl font-bold text-foreground mb-4"
-          >
-            How Can We Help Your Child?
+          <motion.h2 initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="font-display text-3xl md:text-4xl font-bold text-foreground mb-4">
+            {c?.title || "How Can We Help Your Child?"}
           </motion.h2>
-          <motion.p
-            initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
-            transition={{ delay: 0.1 }}
-            className="text-lg text-muted-foreground max-w-2xl mx-auto font-body"
-          >
-            Answer a few quick questions so we can better understand how to support your child and family.
+          <motion.p initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.1 }} className="text-lg text-muted-foreground max-w-2xl mx-auto font-body">
+            {c?.subtitle || "Answer a few quick questions so we can better understand how to support your child and family."}
           </motion.p>
         </div>
 
@@ -86,9 +82,7 @@ const QuizSection = () => {
             <motion.div initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} className="text-center py-16">
               <CheckCircle className="w-16 h-16 text-primary mx-auto mb-4" />
               <h3 className="font-display text-2xl font-bold text-foreground mb-2">Thank You for Sharing</h3>
-              <p className="text-muted-foreground font-body max-w-md mx-auto">
-                Gigi will review your information and contact you with recommended support options.
-              </p>
+              <p className="text-muted-foreground font-body max-w-md mx-auto">Gigi will review your information and contact you with recommended support options.</p>
             </motion.div>
           ) : (
             <Card>
@@ -109,9 +103,7 @@ const QuizSection = () => {
                       <Label className="text-base font-display font-semibold">Child's Age Group *</Label>
                       <Select value={ageGroup} onValueChange={setAgeGroup}>
                         <SelectTrigger><SelectValue placeholder="Select age group" /></SelectTrigger>
-                        <SelectContent>
-                          {ageGroups.map((a) => <SelectItem key={a} value={a}>{a}</SelectItem>)}
-                        </SelectContent>
+                        <SelectContent>{ageGroups.map((a) => <SelectItem key={a} value={a}>{a}</SelectItem>)}</SelectContent>
                       </Select>
                     </motion.div>
                   )}
@@ -158,23 +150,11 @@ const QuizSection = () => {
                     <motion.div key="s3" initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -20 }} className="space-y-5">
                       <Label className="text-base font-display font-semibold block mb-2">Your Contact Information</Label>
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-                        <div className="space-y-2">
-                          <Label htmlFor="q-name">Name *</Label>
-                          <Input id="q-name" required value={parentName} onChange={(e) => setParentName(e.target.value)} />
-                        </div>
-                        <div className="space-y-2">
-                          <Label htmlFor="q-email">Email *</Label>
-                          <Input id="q-email" type="email" required value={parentEmail} onChange={(e) => setParentEmail(e.target.value)} />
-                        </div>
+                        <div className="space-y-2"><Label htmlFor="q-name">Name *</Label><Input id="q-name" required value={parentName} onChange={(e) => setParentName(e.target.value)} /></div>
+                        <div className="space-y-2"><Label htmlFor="q-email">Email *</Label><Input id="q-email" type="email" required value={parentEmail} onChange={(e) => setParentEmail(e.target.value)} /></div>
                       </div>
-                      <div className="space-y-2">
-                        <Label htmlFor="q-phone">Phone</Label>
-                        <Input id="q-phone" value={parentPhone} onChange={(e) => setParentPhone(e.target.value)} />
-                      </div>
-                      <div className="space-y-2">
-                        <Label htmlFor="q-info">Tell us more about your child</Label>
-                        <Textarea id="q-info" rows={4} value={additionalInfo} onChange={(e) => setAdditionalInfo(e.target.value)} placeholder="Any additional details that might help us understand your child's needs..." />
-                      </div>
+                      <div className="space-y-2"><Label htmlFor="q-phone">Phone</Label><Input id="q-phone" value={parentPhone} onChange={(e) => setParentPhone(e.target.value)} /></div>
+                      <div className="space-y-2"><Label htmlFor="q-info">Tell us more about your child</Label><Textarea id="q-info" rows={4} value={additionalInfo} onChange={(e) => setAdditionalInfo(e.target.value)} placeholder="Any additional details..." /></div>
                     </motion.div>
                   )}
                 </AnimatePresence>
@@ -184,13 +164,9 @@ const QuizSection = () => {
                     <ChevronLeft className="w-4 h-4 mr-1" /> Back
                   </Button>
                   {step < TOTAL_STEPS - 1 ? (
-                    <Button onClick={() => setStep(step + 1)} disabled={!canNext()}>
-                      Next <ChevronRight className="w-4 h-4 ml-1" />
-                    </Button>
+                    <Button onClick={() => setStep(step + 1)} disabled={!canNext()}>Next <ChevronRight className="w-4 h-4 ml-1" /></Button>
                   ) : (
-                    <Button onClick={handleSubmit} disabled={!canNext()}>
-                      Submit & Get Guidance
-                    </Button>
+                    <Button onClick={handleSubmit} disabled={!canNext()}>Submit & Get Guidance</Button>
                   )}
                 </div>
               </CardContent>

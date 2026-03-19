@@ -9,17 +9,16 @@ import { Textarea } from "@/components/ui/textarea";
 import {
   Select, SelectContent, SelectItem, SelectTrigger, SelectValue,
 } from "@/components/ui/select";
+import { useContent } from "@/contexts/ContentContext";
 
 const EMAIL = "Virginiarssw@gmail.com";
-
-const topics = [
-  { icon: Heart, title: "Supporting Children with Developmental Needs", description: "Evidence-based strategies for understanding and nurturing children with unique developmental profiles." },
-  { icon: Users, title: "Practical Tools for Parents & Caregivers", description: "Hands-on techniques that families can implement immediately to strengthen daily routines and communication." },
-  { icon: BookOpen, title: "Building Supportive Team Environments", description: "How educators, therapists, and families can collaborate for consistent, positive outcomes." },
-  { icon: Mic, title: "Navigating Therapy & Family Support Systems", description: "Demystifying the therapy landscape and connecting families with the right resources." },
-];
+const topicIcons = [Heart, Users, BookOpen, Mic];
 
 const SpeakingSection = () => {
+  const { content } = useContent();
+  const c = content?.speaking;
+  const topics = c?.topics || [];
+
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [organization, setOrganization] = useState("");
@@ -44,45 +43,31 @@ const SpeakingSection = () => {
     <section id="speaking" className="section-padding bg-gradient-to-br from-primary/10 via-background to-secondary/10">
       <div className="container mx-auto">
         <div className="text-center mb-12">
-                  <motion.div
-                      initial={{ opacity: 0, y: 20 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ duration: 0.7, delay: 0.4 }}
-                      className="mt-8 mb-8 flex flex-col sm:flex-row gap-4 justify-center items-center"
-                  >
-            <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.97 }}>
-                <Button variant="hero" size="xl" asChild>
-                    <a href="#contact">Book a Consultation</a>
-                </Button>
-            </motion.div>
-            <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.97 }}>
-                <Button variant="hero-outline" size="xl" asChild>
-                    <a href="#programs">Explore Programs</a>
-                </Button>
-            </motion.div>
-        </motion.div>
           <motion.h2 initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="font-display text-3xl md:text-4xl font-bold text-foreground mb-4">
-            Book Gigi for Speaking Engagements
+            {c?.title || "Book Gigi for Speaking Engagements"}
           </motion.h2>
           <motion.p initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.1 }} className="text-lg text-muted-foreground max-w-2xl mx-auto font-body">
-            Practical guidance for families, educators, and support teams.
+            {c?.subtitle || "Practical guidance for families, educators, and support teams."}
           </motion.p>
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
-          {topics.map((t, i) => (
-            <motion.div key={t.title} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.1 }}>
-              <Card className="h-full hover:shadow-lg transition-all duration-300 hover:-translate-y-1">
-                <CardContent className="p-6 text-center flex flex-col items-center gap-4">
-                  <div className="w-14 h-14 rounded-full bg-primary/10 flex items-center justify-center">
-                    <t.icon className="w-7 h-7 text-primary" />
-                  </div>
-                  <h3 className="font-display text-lg font-semibold text-foreground">{t.title}</h3>
-                  <p className="text-sm text-muted-foreground font-body">{t.description}</p>
-                </CardContent>
-              </Card>
-            </motion.div>
-          ))}
+          {topics.map((t, i) => {
+            const Icon = topicIcons[i % topicIcons.length];
+            return (
+              <motion.div key={i} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.1 }}>
+                <Card className="h-full hover:shadow-lg transition-all duration-300 hover:-translate-y-1">
+                  <CardContent className="p-6 text-center flex flex-col items-center gap-4">
+                    <div className="w-14 h-14 rounded-full bg-primary/10 flex items-center justify-center">
+                      <Icon className="w-7 h-7 text-primary" />
+                    </div>
+                    <h3 className="font-display text-lg font-semibold text-foreground">{t.title}</h3>
+                    <p className="text-sm text-muted-foreground font-body">{t.description}</p>
+                  </CardContent>
+                </Card>
+              </motion.div>
+            );
+          })}
         </div>
 
         <div className="max-w-2xl mx-auto">
@@ -99,22 +84,13 @@ const SpeakingSection = () => {
                 <h3 className="font-display text-xl font-bold text-foreground mb-6">Request a Speaking Session</h3>
                 <form onSubmit={handleSubmit} className="space-y-5">
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-                    <div className="space-y-2">
-                      <Label htmlFor="sp-name">Your Name *</Label>
-                      <Input id="sp-name" required value={name} onChange={(e) => setName(e.target.value)} />
-                    </div>
-                    <div className="space-y-2">
-                      <Label htmlFor="sp-email">Email *</Label>
-                      <Input id="sp-email" type="email" required value={email} onChange={(e) => setEmail(e.target.value)} />
-                    </div>
+                    <div className="space-y-2"><Label htmlFor="sp-name">Your Name *</Label><Input id="sp-name" required value={name} onChange={(e) => setName(e.target.value)} /></div>
+                    <div className="space-y-2"><Label htmlFor="sp-email">Email *</Label><Input id="sp-email" type="email" required value={email} onChange={(e) => setEmail(e.target.value)} /></div>
                   </div>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+                    <div className="space-y-2"><Label htmlFor="sp-org">Organization</Label><Input id="sp-org" value={organization} onChange={(e) => setOrganization(e.target.value)} /></div>
                     <div className="space-y-2">
-                      <Label htmlFor="sp-org">Organization</Label>
-                      <Input id="sp-org" value={organization} onChange={(e) => setOrganization(e.target.value)} />
-                    </div>
-                    <div className="space-y-2">
-                      <Label htmlFor="sp-type">Event Type</Label>
+                      <Label>Event Type</Label>
                       <Select value={eventType} onValueChange={setEventType}>
                         <SelectTrigger><SelectValue placeholder="Select type" /></SelectTrigger>
                         <SelectContent>
@@ -126,12 +102,9 @@ const SpeakingSection = () => {
                     </div>
                   </div>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+                    <div className="space-y-2"><Label htmlFor="sp-date">Event Date</Label><Input id="sp-date" type="date" value={eventDate} onChange={(e) => setEventDate(e.target.value)} /></div>
                     <div className="space-y-2">
-                      <Label htmlFor="sp-date">Event Date</Label>
-                      <Input id="sp-date" type="date" value={eventDate} onChange={(e) => setEventDate(e.target.value)} />
-                    </div>
-                    <div className="space-y-2">
-                      <Label htmlFor="sp-size">Audience Size</Label>
+                      <Label>Audience Size</Label>
                       <Select value={audienceSize} onValueChange={setAudienceSize}>
                         <SelectTrigger><SelectValue placeholder="Select size" /></SelectTrigger>
                         <SelectContent>
@@ -143,12 +116,12 @@ const SpeakingSection = () => {
                     </div>
                   </div>
                   <div className="space-y-2">
-                    <Label htmlFor="sp-topic">Topic of Interest</Label>
+                    <Label>Topic of Interest</Label>
                     <Select value={topicOfInterest} onValueChange={setTopicOfInterest}>
                       <SelectTrigger><SelectValue placeholder="Select a topic" /></SelectTrigger>
                       <SelectContent>
-                        {topics.map((t) => (
-                          <SelectItem key={t.title} value={t.title}>{t.title}</SelectItem>
+                        {topics.map((t, i) => (
+                          <SelectItem key={i} value={t.title}>{t.title}</SelectItem>
                         ))}
                       </SelectContent>
                     </Select>

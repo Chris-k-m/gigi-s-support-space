@@ -12,7 +12,7 @@ const App = () => {
     <TooltipProvider>
       <Toaster />
       <Sonner />
-          <BrowserRouter basename="/gigi-s-support-space">
+          <BrowserRouter>
         <Routes>
           <Route path="/" element={<Index />} />
           <Route path="/speaking" element={<SpeakingPage />} />

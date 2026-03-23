@@ -1,10 +1,11 @@
 import { motion } from "framer-motion";
-import philosophyFamily from "@/assets/philosophy-family.png";
+import philosophyFamilyFallback from "@/assets/philosophy-family.png";
 import { useContent } from "@/contexts/ContentContext";
 
 const PhilosophySection = () => {
   const { content } = useContent();
   const c = content?.philosophy;
+  const familyImg = c?.image || philosophyFamilyFallback;
 
   return (
     <section className="section-padding bg-sky-light">
@@ -23,7 +24,7 @@ const PhilosophySection = () => {
           </motion.div>
 
           <motion.div initial={{ opacity: 0, x: 30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.6, delay: 0.2 }}>
-            <img src={philosophyFamily} alt="Family walking together in a sunlit park" className="rounded-2xl shadow-lg w-full max-w-md mx-auto" />
+            <img src={familyImg} alt="Family walking together in a sunlit park" className="rounded-2xl shadow-lg w-full max-w-md mx-auto" />
           </motion.div>
         </div>
       </div>

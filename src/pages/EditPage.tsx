@@ -6,6 +6,7 @@ import { Label } from "@/components/ui/label";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { toast } from "@/components/ui/sonner";
 import { Save, ArrowLeft, Plus, Trash2 } from "lucide-react";
+import ImageUpload from "@/components/ImageUpload";
 import type { SiteContent } from "@/contexts/ContentContext";
 
 const SAVE_URL = "/save-content.php?key=admin123";
@@ -50,9 +51,7 @@ const EditPage = () => {
     const keys = path.split(".");
     const updated = JSON.parse(JSON.stringify(content));
     let obj: any = updated;
-    for (let i = 0; i < keys.length - 1; i++) {
-      obj = obj[keys[i]];
-    }
+    for (let i = 0; i < keys.length - 1; i++) obj = obj[keys[i]];
     obj[keys[keys.length - 1]] = value;
     setContent(updated);
   };
@@ -123,6 +122,12 @@ const EditPage = () => {
             <div><Label>Title</Label><Input value={content.hero.title} onChange={(e) => update("hero.title", e.target.value)} /></div>
             <div><Label>Subtitle</Label><Textarea value={content.hero.subtitle} onChange={(e) => update("hero.subtitle", e.target.value)} /></div>
             <div><Label>Email</Label><Input value={content.hero.email} onChange={(e) => update("hero.email", e.target.value)} /></div>
+            <ImageUpload
+              currentUrl={content.hero.image}
+              onUpload={(url) => update("hero.image", url)}
+              label="Background Image"
+              recommendedSize="1920×1080px (landscape)"
+            />
           </CardContent>
         </Card>
 
@@ -135,6 +140,12 @@ const EditPage = () => {
               <div key={i}><Label>Paragraph {i + 1}</Label><Textarea value={p} onChange={(e) => updateStringArray("about.paragraphs", i, e.target.value)} /></div>
             ))}
             <div><Label>Tagline</Label><Input value={content.about.tagline} onChange={(e) => update("about.tagline", e.target.value)} /></div>
+            <ImageUpload
+              currentUrl={content.about.image}
+              onUpload={(url) => update("about.image", url)}
+              label="Portrait Photo"
+              recommendedSize="400×500px (portrait)"
+            />
           </CardContent>
         </Card>
 
@@ -145,16 +156,22 @@ const EditPage = () => {
             <div><Label>Section Title</Label><Input value={content.services.title} onChange={(e) => update("services.title", e.target.value)} /></div>
             <div><Label>Subtitle</Label><Input value={content.services.subtitle} onChange={(e) => update("services.subtitle", e.target.value)} /></div>
             {content.services.items.map((item, i) => (
-              <div key={i} className="p-4 border rounded-lg space-y-2">
+              <div key={i} className="p-4 border rounded-lg space-y-3">
                 <div className="flex justify-between items-center">
                   <Label className="font-bold">Service {i + 1}</Label>
                   <Button variant="ghost" size="sm" onClick={() => removeArrayItem("services.items", i)}><Trash2 className="w-4 h-4" /></Button>
                 </div>
                 <Input placeholder="Title" value={item.title} onChange={(e) => updateArrayItem("services.items", i, "title", e.target.value)} />
                 <Textarea placeholder="Description" value={item.description} onChange={(e) => updateArrayItem("services.items", i, "description", e.target.value)} />
+                <ImageUpload
+                  currentUrl={item.image}
+                  onUpload={(url) => updateArrayItem("services.items", i, "image", url)}
+                  label="Service Image"
+                  recommendedSize="800×600px (4:3 landscape)"
+                />
               </div>
             ))}
-            <Button variant="outline" size="sm" onClick={() => addArrayItem("services.items", { title: "", description: "" })}><Plus className="w-4 h-4 mr-1" /> Add Service</Button>
+            <Button variant="outline" size="sm" onClick={() => addArrayItem("services.items", { title: "", description: "", image: "" })}><Plus className="w-4 h-4 mr-1" /> Add Service</Button>
           </CardContent>
         </Card>
 
@@ -172,6 +189,12 @@ const EditPage = () => {
             {content.programs.expectations.map((ex, i) => (
               <Input key={i} value={ex} onChange={(e) => updateStringArray("programs.expectations", i, e.target.value)} />
             ))}
+            <ImageUpload
+              currentUrl={content.programs.image}
+              onUpload={(url) => update("programs.image", url)}
+              label="Programs Image"
+              recommendedSize="800×600px (landscape)"
+            />
           </CardContent>
         </Card>
 
@@ -184,6 +207,12 @@ const EditPage = () => {
               <div key={i}><Label>Paragraph {i + 1}</Label><Textarea value={p} onChange={(e) => updateStringArray("philosophy.paragraphs", i, e.target.value)} /></div>
             ))}
             <div><Label>Quote</Label><Textarea value={content.philosophy.quote} onChange={(e) => update("philosophy.quote", e.target.value)} /></div>
+            <ImageUpload
+              currentUrl={content.philosophy.image}
+              onUpload={(url) => update("philosophy.image", url)}
+              label="Philosophy Image"
+              recommendedSize="600×600px (square or landscape)"
+            />
           </CardContent>
         </Card>
 

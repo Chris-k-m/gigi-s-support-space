@@ -1,16 +1,17 @@
 import { motion } from "framer-motion";
 import { Mail, Sparkles } from "lucide-react";
-import heroBg from "@/assets/hero-bg.png";
+import heroBgFallback from "@/assets/hero-bg.png";
 import { useContent } from "@/contexts/ContentContext";
 
 const HeroSection = () => {
   const { content } = useContent();
   const c = content?.hero;
+  const bgImage = c?.image || heroBgFallback;
 
   return (
     <section className="relative min-h-[90vh] flex items-center overflow-hidden pt-16">
       <div className="absolute inset-0">
-        <img src={heroBg} alt="Family support illustration" className="w-full h-full object-cover opacity-15" />
+        <img src={bgImage} alt="Family support illustration" className="w-full h-full object-cover opacity-15" />
         <div className="absolute inset-0 bg-gradient-to-br from-primary/20 via-background/95 to-secondary/15" />
       </div>
 

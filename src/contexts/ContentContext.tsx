@@ -6,27 +6,31 @@ export interface SiteContent {
     title: string;
     subtitle: string;
     email: string;
+    image?: string;
   };
   about: {
     title: string;
     paragraphs: string[];
     tagline: string;
+    image?: string;
   };
   services: {
     title: string;
     subtitle: string;
-    items: { title: string; description: string }[];
+    items: { title: string; description: string; image?: string }[];
   };
   programs: {
     title: string;
     description: string;
     highlights: string[];
     expectations: string[];
+    image?: string;
   };
   philosophy: {
     title: string;
     paragraphs: string[];
     quote: string;
+    image?: string;
   };
   speaking: {
     title: string;

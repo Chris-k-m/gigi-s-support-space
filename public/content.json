@@ -22,15 +22,18 @@
     "items": [
       {
         "title": "1:1 Social Support",
-        "description": "Personalized sessions tailored to individual needs, helping you build confidence and skills at your own pace."
+        "description": "Personalized sessions tailored to individual needs, helping you build confidence and skills at your own pace.",
+        "image": ""
       },
       {
         "title": "Collaborative Care",
-        "description": "Working alongside therapists and families to provide cohesive, comprehensive support for the best outcomes."
+        "description": "Working alongside therapists and families to provide cohesive, comprehensive support for the best outcomes.",
+        "image": ""
       },
       {
         "title": "Group Classes",
-        "description": "Skill-building sessions in a fun, flexible group environment. Register per session with flexible scheduling."
+        "description": "Skill-building sessions in a fun, flexible group environment. Register per session with flexible scheduling.",
+        "image": ""
       }
     ]
   },

@@ -1,79 +1,226 @@
 import { createContext, useContext, useState, useEffect, ReactNode } from "react";
 
 export interface SiteContent {
-  hero: {
-    badge: string;
-    title: string;
-    subtitle: string;
-    email: string;
-  };
-  about: {
-    title: string;
-    paragraphs: string[];
-    tagline: string;
-  };
-  services: {
-    title: string;
-    subtitle: string;
-    items: { title: string; description: string }[];
-  };
-  programs: {
-    title: string;
-    description: string;
-    highlights: string[];
-    expectations: string[];
-  };
-  philosophy: {
-    title: string;
-    paragraphs: string[];
-    quote: string;
-  };
-  speaking: {
-    title: string;
-    subtitle: string;
-    topics: { title: string; description: string }[];
-  };
-  quiz: {
-    title: string;
-    subtitle: string;
-  };
-  testimonials: {
-    title: string;
-    items: { quote: string; author: string; role: string; stars: number }[];
-  };
-  faq: {
-    title: string;
-    items: { q: string; a: string }[];
-  };
-  contact: {
-    title: string;
-    subtitle: string;
-    email: string;
-  };
+    hero: {
+        badge: string;
+        title: string;
+        subtitle: string;
+        email: string;
+    };
+    about: {
+        title: string;
+        paragraphs: string[];
+        tagline: string;
+    };
+    services: {
+        title: string;
+        subtitle: string;
+        items: { title: string; description: string }[];
+    };
+    programs: {
+        title: string;
+        description: string;
+        highlights: string[];
+        expectations: string[];
+    };
+    philosophy: {
+        title: string;
+        paragraphs: string[];
+        quote: string;
+    };
+    speaking: {
+        title: string;
+        subtitle: string;
+        topics: { title: string; description: string }[];
+    };
+    quiz: {
+        title: string;
+        subtitle: string;
+    };
+    testimonials: {
+        title: string;
+        items: { quote: string; author: string; role: string; stars: number }[];
+    };
+    faq: {
+        title: string;
+        items: { q: string; a: string }[];
+    };
+    contact: {
+        title: string;
+        subtitle: string;
+        email: string;
+    };
 }
 
-const ContentContext = createContext<{ content: SiteContent | null; loading: boolean }>({
-  content: null,
-  loading: true,
+// Default content that matches your content.json structure
+const defaultContent: SiteContent = {
+    hero: {
+        badge: "Family-Centered Support",
+        title: "Practical Support for Real Life.",
+        subtitle: "Helping individuals and families apply therapeutic skills to everyday life with confidence and care.",
+        email: "Virginiarssw@gmail.com"
+    },
+    about: {
+        title: "Meet Gigi",
+        paragraphs: [
+            "Virginia (Gigi) Dubois is a Registered Social Service Worker based in Canada, dedicated to supporting individuals, families, and caregivers through life's challenges.",
+            "Her approach focuses on applying clinical tools to real-world situations — making therapeutic skills practical, accessible, and empowering for everyday life.",
+            "Gigi works collaboratively with Occupational and Physical Therapists to ensure cohesive, comprehensive care that puts families at the center."
+        ],
+        tagline: "Compassionate. Practical. Empowering."
+    },
+    services: {
+        title: "How I Can Help",
+        subtitle: "Flexible, personalized services designed to meet you where you are.",
+        items: [
+            {
+                title: "1:1 Social Support",
+                description: "Personalized sessions tailored to individual needs, helping you build confidence and skills at your own pace."
+            },
+            {
+                title: "Collaborative Care",
+                description: "Working alongside therapists and families to provide cohesive, comprehensive support for the best outcomes."
+            },
+            {
+                title: "Group Classes",
+                description: "Skill-building sessions in a fun, flexible group environment. Register per session with flexible scheduling."
+            }
+        ]
+    },
+    programs: {
+        title: "Flexible & Engaging Group Programs",
+        description: "Our group programs are designed to develop skills in a safe, encouraging environment where every participant's autonomy and voice are valued.",
+        highlights: [
+            "Skill development in a fun, creative setting",
+            "Safe and encouraging environment for all",
+            "Participant autonomy and choice always respected"
+        ],
+        expectations: [
+            "Small, focused group sessions",
+            "Flexible per-session registration",
+            "Evidence-based skill-building activities",
+            "Supportive and inclusive atmosphere",
+            "Fun and engaging for all ages"
+        ]
+    },
+    philosophy: {
+        title: "Empowerment Through Practical Skills",
+        paragraphs: [
+            "I believe in real, honest support. Every family deserves someone in their corner who listens without judgment and helps translate clinical goals into everyday wins.",
+            "Whether you're navigating special needs, healthcare systems, or simply looking for guidance — I'm here to help build independence and confidence, one step at a time."
+        ],
+        quote: "Supportive, creative, and always centered on what matters most — your family."
+    },
+    speaking: {
+        title: "Book Gigi for Speaking Engagements",
+        subtitle: "Practical guidance for families, educators, and support teams.",
+        topics: [
+            {
+                title: "Supporting Children with Developmental Needs",
+                description: "Evidence-based strategies for understanding and nurturing children with unique developmental profiles."
+            },
+            {
+                title: "Practical Tools for Parents & Caregivers",
+                description: "Hands-on techniques that families can implement immediately to strengthen daily routines and communication."
+            },
+            {
+                title: "Building Supportive Team Environments",
+                description: "How educators, therapists, and families can collaborate for consistent, positive outcomes."
+            },
+            {
+                title: "Navigating Therapy & Family Support Systems",
+                description: "Demystifying the therapy landscape and connecting families with the right resources."
+            }
+        ]
+    },
+    quiz: {
+        title: "How Can We Help Your Child?",
+        subtitle: "Answer a few quick questions so we can better understand how to support your child and family."
+    },
+    testimonials: {
+        title: "What Families Are Saying",
+        items: [
+            {
+                quote: "Gigi has been incredible for our family. She meets our child exactly where they're at and makes every session meaningful.",
+                author: "Sarah M.",
+                role: "Parent",
+                stars: 5
+            },
+            {
+                quote: "The group classes are wonderful — my kids actually look forward to going! The environment is so supportive and fun.",
+                author: "James T.",
+                role: "Caregiver",
+                stars: 5
+            },
+            {
+                quote: "Working with Gigi gave us practical tools we use every single day. She truly understands what families need.",
+                author: "Linda K.",
+                role: "Parent",
+                stars: 5
+            }
+        ]
+    },
+    faq: {
+        title: "Frequently Asked Questions",
+        items: [
+            {
+                q: "What is a Registered Social Service Worker?",
+                a: "A Registered Social Service Worker (RSSW) is a regulated professional who provides support in areas like mental health, family services, and community resources. RSSWs are registered with a provincial regulatory body and uphold professional standards of practice."
+            },
+            {
+                q: "Do you offer individual sessions?",
+                a: "Yes! I offer personalized 1:1 sessions tailored to your unique needs and goals. These sessions focus on building practical skills and strategies you can use in everyday life."
+            },
+            {
+                q: "How do group registrations work?",
+                a: "Group sessions are offered on a per-session registration basis, giving you the flexibility to attend when it works for your schedule. Simply reach out to learn about upcoming sessions and reserve your spot."
+            },
+            {
+                q: "Do you collaborate with other healthcare providers?",
+                a: "Yes, I work closely with Occupational Therapists, Physical Therapists, and other professionals to ensure cohesive, well-rounded support for individuals and families."
+            }
+        ]
+    },
+    contact: {
+        title: "Get in Touch",
+        subtitle: "Ready to take the next step? Reach out directly.",
+        email: "Virginiarssw@gmail.com"
+    }
+};
+
+const ContentContext = createContext<{ content: SiteContent; loading: boolean }>({
+    content: defaultContent,
+    loading: true,
 });
 
 export const useContent = () => useContext(ContentContext);
 
 export const ContentProvider = ({ children }: { children: ReactNode }) => {
-  const [content, setContent] = useState<SiteContent | null>(null);
-  const [loading, setLoading] = useState(true);
+    const [content, setContent] = useState<SiteContent>(defaultContent);
+    const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
-    fetch("/content.json")
-      .then((r) => r.json())
-      .then((data) => setContent(data))
-      .catch((err) => console.error("Failed to load content:", err))
-      .finally(() => setLoading(false));
-  }, []);
+    useEffect(() => {
+        fetch("/content.json")
+            .then((r) => {
+                if (!r.ok) {
+                    throw new Error(`HTTP error! status: ${r.status}`);
+                }
+                return r.json();
+            })
+            .then((data) => {
+                setContent(data);
+                setLoading(false);
+            })
+            .catch((err) => {
+                console.error("Failed to load content from /content.json:", err);
+                console.log("Using default content instead");
+                setLoading(false);
+            });
+    }, []);
 
-  return (
-    <ContentContext.Provider value={{ content, loading }}>
-      {children}
-    </ContentContext.Provider>
-  );
+    return (
+        <ContentContext.Provider value={{ content, loading }}>
+            {children}
+        </ContentContext.Provider>
+    );
 };

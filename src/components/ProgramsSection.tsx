@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Sparkles, Heart, Shield } from "lucide-react";
-import programsGroup from "@/assets/programs-group.png";
+import programsGroupFallback from "@/assets/programs-group.png";
 import { useContent } from "@/contexts/ContentContext";
 
 const highlightIcons = [Sparkles, Heart, Shield];
@@ -9,6 +9,7 @@ const highlightIcons = [Sparkles, Heart, Shield];
 const ProgramsSection = () => {
   const { content } = useContent();
   const c = content?.programs;
+  const programImg = c?.image || programsGroupFallback;
 
   return (
     <section id="programs" className="section-padding bg-warm">
@@ -38,7 +39,7 @@ const ProgramsSection = () => {
           </motion.div>
 
           <motion.div initial={{ opacity: 0, scale: 0.95 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true }} transition={{ duration: 0.6, delay: 0.2 }} className="space-y-6">
-            <img src={programsGroup} alt="Children and adults enjoying a creative group activity" className="rounded-2xl shadow-lg w-full" />
+            <img src={programImg} alt="Children and adults enjoying a creative group activity" className="rounded-2xl shadow-lg w-full" />
             <div className="bg-card rounded-2xl p-8 shadow-lg border border-border">
               <h3 className="font-display text-xl font-semibold text-foreground mb-4">What to Expect</h3>
               <ul className="space-y-3 text-muted-foreground">

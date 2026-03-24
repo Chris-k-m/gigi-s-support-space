@@ -3,7 +3,8 @@
     "badge": "Family-Centered Support",
     "title": "Practical Support for Real Life.",
     "subtitle": "Helping individuals and families apply therapeutic skills to everyday life with confidence and care.",
-    "email": "Virginiarssw@gmail.com"
+    "email": "Virginiarssw@gmail.com",
+    "image": ""
   },
   "about": {
     "title": "Meet Gigi",
@@ -12,7 +13,8 @@
       "Her approach focuses on applying clinical tools to real-world situations — making therapeutic skills practical, accessible, and empowering for everyday life.",
       "Gigi works collaboratively with Occupational and Physical Therapists to ensure cohesive, comprehensive care that puts families at the center."
     ],
-    "tagline": "Compassionate. Practical. Empowering."
+    "tagline": "Compassionate. Practical. Empowering.",
+    "image": ""
   },
   "services": {
     "title": "How I Can Help",
@@ -20,15 +22,18 @@
     "items": [
       {
         "title": "1:1 Social Support",
-        "description": "Personalized sessions tailored to individual needs, helping you build confidence and skills at your own pace."
+        "description": "Personalized sessions tailored to individual needs, helping you build confidence and skills at your own pace.",
+        "image": ""
       },
       {
         "title": "Collaborative Care",
-        "description": "Working alongside therapists and families to provide cohesive, comprehensive support for the best outcomes."
+        "description": "Working alongside therapists and families to provide cohesive, comprehensive support for the best outcomes.",
+        "image": ""
       },
       {
         "title": "Group Classes",
-        "description": "Skill-building sessions in a fun, flexible group environment. Register per session with flexible scheduling."
+        "description": "Skill-building sessions in a fun, flexible group environment. Register per session with flexible scheduling.",
+        "image": ""
       }
     ]
   },
@@ -46,7 +51,8 @@
       "Evidence-based skill-building activities",
       "Supportive and inclusive atmosphere",
       "Fun and engaging for all ages"
-    ]
+    ],
+    "image": ""
   },
   "philosophy": {
     "title": "Empowerment Through Practical Skills",
@@ -54,7 +60,8 @@
       "I believe in real, honest support. Every family deserves someone in their corner who listens without judgment and helps translate clinical goals into everyday wins.",
       "Whether you're navigating special needs, healthcare systems, or simply looking for guidance — I'm here to help build independence and confidence, one step at a time."
     ],
-    "quote": "Supportive, creative, and always centered on what matters most — your family."
+    "quote": "Supportive, creative, and always centered on what matters most — your family.",
+    "image": ""
   },
   "speaking": {
     "title": "Book Gigi for Speaking Engagements",

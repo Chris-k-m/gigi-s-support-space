@@ -1,10 +1,11 @@
 import { motion } from "framer-motion";
-import portrait from "@/assets/portrait-placeholder.png";
+import portraitFallback from "@/assets/portrait-placeholder.png";
 import { useContent } from "@/contexts/ContentContext";
 
 const AboutSection = () => {
   const { content } = useContent();
   const c = content?.about;
+  const portrait = c?.image || portraitFallback;
 
   return (
     <section id="about" className="section-padding bg-sage-light">
